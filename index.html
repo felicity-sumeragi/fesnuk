@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Poin ke Saldo DANA</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Aplikasi Konversi Poin ke Saldo DANA</h1>
+        
+        <!-- Formulir untuk input data pengguna -->
+        <form id="conversionForm">
+            <div class="input-group">
+                <label for="username">Nama Pengguna:</label>
+                <input type="text" id="username" placeholder="Masukkan nama Anda" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="phoneNumber">Nomor HP:</label>
+                <input type="text" id="phoneNumber" placeholder="08xxxxxxxxxx" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="points">Masukkan Poin:</label>
+                <input type="number" id="points" placeholder="Jumlah poin" required>
+            </div>
+            
+            <button type="button" onclick="convertPoints()">Konversi</button>
+        </form>
+
+        <!-- Tampilan hasil konversi -->
+        <h2 id="result"></h2>
+    </div>
+
+    <!-- JavaScript untuk mengonversi poin ke saldo -->
+    <script>
+        function convertPoints() {
+            const username = document.getElementById("username").value.trim();
+            const phoneNumber = document.getElementById("phoneNumber").value.trim();
+            const points = parseInt(document.getElementById("points").value);
+
+            if (!username || !phoneNumber || isNaN(points) || points <= 0) {
+                document.getElementById("result").textContent = "Masukkan data yang valid!";
+                return;
+            }
+
+            const saldo = points * 10;
+            document.getElementById("result").textContent =
+                `Halo, ${username}! Saldo DANA ke ${phoneNumber} adalah: Rp${saldo.toLocaleString("id-ID")}`;
+        }
+    </script>
+</body>
+</html>
